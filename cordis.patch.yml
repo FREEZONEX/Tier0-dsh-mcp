@@ -1,0 +1,4 @@
+- insert:
+    - id: tier0-mcp
+      name: '@tier0/dsh-mcp'
+      config: {}
