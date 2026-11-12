@@ -5,7 +5,7 @@ export const name = 'tier0-mcp';
 export const inject = ['tools'];
 
 export const Config = Schema.object({
-  url: Schema.string().default('https://dev.tier0.cn/mcp'),
+  url: Schema.string().default('https://dev.studio.tier0.cn/mcp'),
   apiKeyEnv: Schema.string().default('TIER0_API_KEY'),
   toolCallTimeoutMs: Schema.number().min(1000).max(300000).default(120000),
 });
@@ -15,7 +15,7 @@ export async function apply(ctx, config) {
   try {
     endpoint = new URL(config.url);
   } catch {
-    throw new Error('Tier0 MCP URL must be an absolute HTTPS URL, for example https://dev.tier0.cn/mcp.');
+    throw new Error('Tier0 MCP URL must be an absolute HTTPS URL, for example https://dev.studio.tier0.cn/mcp.');
   }
   if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password || endpoint.hash) {
     throw new Error('Tier0 MCP URL must use HTTPS and omit embedded credentials and fragments.');
