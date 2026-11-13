@@ -6,7 +6,7 @@ Connect DSH to a Tier0 workspace using the official DSH MCP client. The connecto
 
 ## Requirements
 
-- DSH `0.2.2-rc.1` and Node.js `24.9.0` or newer.
+- DSH `0.2.2-rc.1` or `0.2.2-rc.2` and Node.js `24.9.0` or newer.
 - A reachable Tier0 Cloud instance with its `/mcp` endpoint enabled.
 - A personal API key created in that instance. The key determines the workspace and access rights.
 
@@ -18,9 +18,9 @@ dsh plugin --profile web add @tier0/dsh-mcp
 
 Replace `web` with the name of an existing profile to install there. Restart DSH after installation.
 
-The default endpoint is `https://dev.studio.tier0.cn/mcp`, Tier0's development environment. Configure your own instance before providing its key. In the Tier0 plugin settings, set `url` to the complete HTTPS MCP endpoint. `apiKeyEnv` defaults to `TIER0_API_KEY`; `toolCallTimeoutMs` defaults to `120000`.
+The default endpoint is `https://dev.mcp.tier0.cn/mcp`, Tier0's development environment. Configure your own instance before providing its key. In the Tier0 plugin settings, set `url` to the complete HTTPS MCP endpoint. `apiKeyEnv` defaults to `TIER0_API_KEY`; `toolCallTimeoutMs` defaults to `120000`.
 
-Version 0.1.1 follows the development endpoint migration from `dev.tier0.cn` to `dev.studio.tier0.cn`. If your profile explicitly saved the old URL, update it in the plugin settings. Custom instance URLs are preserved; authenticate with the intended instance before connecting.
+Version 0.1.2 follows the dedicated MCP endpoint at `dev.mcp.tier0.cn`. The development sign-in page remains at `https://dev.studio.tier0.cn`. If your profile explicitly saved `https://dev.tier0.cn/mcp` or `https://dev.studio.tier0.cn/mcp`, update it in the plugin settings. Custom instance URLs are preserved; authenticate with the intended instance before connecting.
 
 默认地址为 Tier0 开发环境。连接其他实例时，先在 Tier0 插件设置中填写完整 MCP 地址，例如 `https://your-tier0.example/mcp`，再使用该实例的个人 API Key。
 
@@ -62,8 +62,8 @@ npm test
 npm pack
 ```
 
-The package uses the host's `@deepseek-ai/dsh-mcp-client` peer dependency and ships a Cordis bundle patch, English and Chinese metadata, and the Tier0 icon. The supported DSH version is pinned to the validated release.
+The package uses the host's `@deepseek-ai/dsh-mcp-client` peer dependency and ships a Cordis bundle patch, English and Chinese metadata, and the Tier0 icon. Compatibility is limited to the two specified releases.
 
-Validation on Windows with DSH `0.2.2-rc.1` included installation of the packed archive into a fresh Web profile, full DSH startup, discovery of the four Tier0 tools, and a successful read-only `whoami` call. The npm test suite checks invalid endpoints, missing credentials and accidental Bearer prefixes. Visual rendering of the settings page remains unverified.
+Validation on Windows with DSH `0.2.2-rc.1` and `0.2.2-rc.2` included installation of the packed archive into fresh Web profiles, full DSH startup, discovery of the four Tier0 tools, and successful read-only `whoami` calls at `https://dev.mcp.tier0.cn/mcp`. The npm test suite checks invalid endpoints, missing credentials and accidental Bearer prefixes. Visual rendering of the settings page remains unverified.
 
 License: MIT. Copyright 2026 FREEZONEX.

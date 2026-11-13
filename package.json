@@ -1,6 +1,6 @@
 {
   "name": "@tier0/dsh-mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Connect DeepSeek Harness to Tier0 workspaces through MCP.",
   "type": "module",
   "main": "index.js",
@@ -22,10 +22,10 @@
   },
   "engines": {
     "node": ">=24.9.0",
-    "dsh": "0.2.2-rc.1"
+    "dsh": "0.2.2-rc.1 || 0.2.2-rc.2"
   },
   "peerDependencies": {
-    "@deepseek-ai/dsh-mcp-client": "0.2.2-rc.1"
+    "@deepseek-ai/dsh-mcp-client": "0.2.2-rc.1 || 0.2.2-rc.2"
   },
   "peerDependenciesMeta": {
     "@deepseek-ai/dsh-mcp-client": {
