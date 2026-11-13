@@ -1,6 +1,6 @@
 {
   "name": "@tier0/dsh-mcp",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Connect DeepSeek Harness to Tier0 workspaces through MCP.",
   "type": "module",
   "main": "index.js",

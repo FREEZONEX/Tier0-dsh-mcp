@@ -18,11 +18,11 @@ dsh plugin --profile web add @tier0/dsh-mcp
 
 Replace `web` with the name of an existing profile to install there. Restart DSH after installation.
 
-The default endpoint is `https://dev.mcp.tier0.cn/mcp`, Tier0's development environment. Configure your own instance before providing its key. In the Tier0 plugin settings, set `url` to the complete HTTPS MCP endpoint. `apiKeyEnv` defaults to `TIER0_API_KEY`; `toolCallTimeoutMs` defaults to `120000`.
+The default endpoint is `https://mcp.tier0.cn/mcp`, Tier0's production service. Sign in at `https://studio.tier0.cn` and use a personal API key from that production instance. To connect another instance, first set `url` in the Tier0 plugin settings to its complete HTTPS MCP endpoint, then provide that instance's key. `apiKeyEnv` defaults to `TIER0_API_KEY`; `toolCallTimeoutMs` defaults to `120000`.
 
-Version 0.1.2 follows the dedicated MCP endpoint at `dev.mcp.tier0.cn`. The development sign-in page remains at `https://dev.studio.tier0.cn`. If your profile explicitly saved `https://dev.tier0.cn/mcp` or `https://dev.studio.tier0.cn/mcp`, update it in the plugin settings. Custom instance URLs are preserved; authenticate with the intended instance before connecting.
+Version 0.1.3 changes the default from development to production. Before upgrading, obtain a production API key and replace any development key in `TIER0_API_KEY`. If your profile explicitly saved a development URL, change it to `https://mcp.tier0.cn/mcp` when moving to production. Custom instance URLs remain unchanged; always pair the configured endpoint with a credential from that instance.
 
-默认地址为 Tier0 开发环境。连接其他实例时，先在 Tier0 插件设置中填写完整 MCP 地址，例如 `https://your-tier0.example/mcp`，再使用该实例的个人 API Key。
+默认地址为 Tier0 生产环境。升级前请将开发环境 Key 替换为生产 Key；如果设置里显式保存了开发地址，迁移生产时一并修改。连接其他实例时，先填写完整 MCP 地址，例如 `https://your-tier0.example/mcp`，再使用该实例的个人 API Key。
 
 ## Credentials
 
@@ -64,6 +64,6 @@ npm pack
 
 The package uses the host's `@deepseek-ai/dsh-mcp-client` peer dependency and ships a Cordis bundle patch, English and Chinese metadata, and the Tier0 icon. Compatibility is limited to the two specified releases.
 
-Validation on Windows with DSH `0.2.2-rc.1` and `0.2.2-rc.2` included installation of the packed archive into fresh Web profiles, full DSH startup, discovery of the four Tier0 tools, and successful read-only `whoami` calls at `https://dev.mcp.tier0.cn/mcp`. The npm test suite checks invalid endpoints, missing credentials and accidental Bearer prefixes. Visual rendering of the settings page remains unverified.
+Release acceptance uses fresh Web profiles on Windows with DSH `0.2.2-rc.1` and `0.2.2-rc.2`: install the packed archive, start DSH, discover the four Tier0 tools and make a read-only `whoami` call at the production endpoint. The npm test suite checks invalid endpoints, missing credentials and accidental Bearer prefixes. Visual rendering of the settings page remains unverified.
 
 License: MIT. Copyright 2026 FREEZONEX.
