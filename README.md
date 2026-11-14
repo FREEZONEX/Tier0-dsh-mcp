@@ -6,7 +6,7 @@ Connect DSH to a Tier0 workspace using the official DSH MCP client. The connecto
 
 ## Requirements
 
-- DSH `0.2.2-rc.1` or `0.2.2-rc.2` and Node.js `24.9.0` or newer.
+- DSH `0.2.2-rc.1`, `0.2.2-rc.2` or `0.2.2-rc.3` and Node.js `24.9.0` or newer.
 - A reachable Tier0 Cloud instance with its `/mcp` endpoint enabled.
 - A personal API key created in that instance. The key determines the workspace and access rights.
 
@@ -21,6 +21,8 @@ Replace `web` with the name of an existing profile to install there. Restart DSH
 The default endpoint is `https://mcp.tier0.cn/mcp`, Tier0's production service. Sign in at `https://studio.tier0.cn` and use a personal API key from that production instance. To connect another instance, first set `url` in the Tier0 plugin settings to its complete HTTPS MCP endpoint, then provide that instance's key. `apiKeyEnv` defaults to `TIER0_API_KEY`; `toolCallTimeoutMs` defaults to `120000`.
 
 Version 0.1.3 changes the default from development to production. Before upgrading, obtain a production API key and replace any development key in `TIER0_API_KEY`. If your profile explicitly saved a development URL, change it to `https://mcp.tier0.cn/mcp` when moving to production. Custom instance URLs remain unchanged; always pair the configured endpoint with a credential from that instance.
+
+Version 0.1.4 adds compatibility with DSH `0.2.2-rc.3`, preserving support for `rc.1` and `rc.2`.
 
 默认地址为 Tier0 生产环境。升级前请将开发环境 Key 替换为生产 Key；如果设置里显式保存了开发地址，迁移生产时一并修改。连接其他实例时，先填写完整 MCP 地址，例如 `https://your-tier0.example/mcp`，再使用该实例的个人 API Key。
 
@@ -62,8 +64,8 @@ npm test
 npm pack
 ```
 
-The package uses the host's `@deepseek-ai/dsh-mcp-client` peer dependency and ships a Cordis bundle patch, English and Chinese metadata, and the Tier0 icon. Compatibility is limited to the two specified releases.
+The package uses the host's `@deepseek-ai/dsh-mcp-client` peer dependency and ships a Cordis bundle patch, English and Chinese metadata, and the Tier0 icon. Compatibility is limited to the specified releases.
 
-Release acceptance uses fresh Web profiles on Windows with DSH `0.2.2-rc.1` and `0.2.2-rc.2`: install the packed archive, start DSH, discover the four Tier0 tools and make a read-only `whoami` call at the production endpoint. The npm test suite checks invalid endpoints, missing credentials and accidental Bearer prefixes. Visual rendering of the settings page remains unverified.
+The packed 0.1.4 archive passed fresh Web-profile installation, full startup, four-tool discovery and a read-only production `whoami` call on Windows with DSH `0.2.2-rc.1`, `0.2.2-rc.2` and `0.2.2-rc.3`. The npm test suite checks invalid endpoints, missing credentials and accidental Bearer prefixes. Visual rendering of the settings page remains unverified.
 
 License: MIT. Copyright 2026 FREEZONEX.
