@@ -29,12 +29,12 @@ export async function apply(ctx, config) {
     throw new Error(`Set ${config.apiKeyEnv} to the API key value only, without the Bearer prefix or whitespace.`);
   }
 
-  await mcpClient.apply(ctx, {
+  await mcpClient.apply(ctx, mcpClient.Config({
     serverName: 'tier0',
     transport: 'streamable-http',
     url: endpoint.href,
     headers: { Authorization: `Bearer ${apiKey}` },
     toolCallTimeoutMs: config.toolCallTimeoutMs,
     failOnStartupError: true,
-  });
+  }));
 }

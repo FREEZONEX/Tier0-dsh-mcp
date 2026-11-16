@@ -26,6 +26,10 @@ Version 0.1.4 adds compatibility with DSH `0.2.2-rc.3`, preserving support for `
 
 默认地址为 Tier0 生产环境。升级前请将开发环境 Key 替换为生产 Key；如果设置里显式保存了开发地址，迁移生产时一并修改。连接其他实例时，先填写完整 MCP 地址，例如 `https://your-tier0.example/mcp`，再使用该实例的个人 API Key。
 
+Version 0.1.5 applies the installed official MCP client's configuration defaults before connecting, including the connection cleanup budget in rc.3. Production URL and supported DSH versions are unchanged.
+
+To update an existing installation, run `dsh plugin --profile web add @tier0/dsh-mcp@0.1.5`, then restart DSH.
+
 ## Credentials
 
 The plugin reads the API key from the DSH process environment at activation. Enter the key value alone. Set it in the terminal used to launch DSH.
@@ -56,6 +60,8 @@ Ask DSH to call `mcp__tier0__whoami` and report the connected workspace. Then tr
 
 HTTP 401 requires a valid key for the configured instance. HTTP 403 indicates insufficient access. A missing `TIER0_API_KEY` prevents this plugin from connecting and produces a setup message. TLS certificates must be trusted by Node.js. Tool errors are returned to DSH by the official MCP client.
 
+Use the connected deployment's current operation schemas and capacity limits. Limits for synchronous record transactions do not automatically apply to ordinary batches, sampling or metadata operations. Do not split an atomic transaction into independent writes to bypass a limit. A successful dry run validates the request; it does not commit writes. After a timeout, check the result or receipt before retrying and retain the required idempotency key.
+
 ## Development
 
 ```sh
@@ -66,6 +72,6 @@ npm pack
 
 The package uses the host's `@deepseek-ai/dsh-mcp-client` peer dependency and ships a Cordis bundle patch, English and Chinese metadata, and the Tier0 icon. Compatibility is limited to the specified releases.
 
-The packed 0.1.4 archive passed fresh Web-profile installation, full startup, four-tool discovery and a read-only production `whoami` call on Windows with DSH `0.2.2-rc.1`, `0.2.2-rc.2` and `0.2.2-rc.3`. The npm test suite checks invalid endpoints, missing credentials and accidental Bearer prefixes. Visual rendering of the settings page remains unverified.
+The packed 0.1.4 archive passed fresh Web-profile installation, full startup, four-tool discovery and a read-only production `whoami` call on Windows with DSH `0.2.2-rc.1`, `0.2.2-rc.2` and `0.2.2-rc.3`. The npm test suite checks invalid endpoints, missing credentials, accidental Bearer prefixes and preservation of the official client defaults. The packed 0.1.5 archive also passed fresh installation, full startup, four-tool discovery and production read-only whoami on all three supported DSH releases on 2026-11-16. Visual rendering of the settings page remains unverified.
 
 License: MIT. Copyright 2026 FREEZONEX.

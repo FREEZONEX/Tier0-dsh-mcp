@@ -1,6 +1,6 @@
 {
   "name": "@tier0/dsh-mcp",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Connect DeepSeek Harness to Tier0 workspaces through MCP.",
   "type": "module",
   "main": "index.js",
@@ -39,7 +39,7 @@
     "@deepseek-ai/dsh-mcp-client": "0.2.2-rc.3"
   },
   "scripts": {
-    "test": "node --test"
+    "test": "node --experimental-test-module-mocks --test"
   },
   "publishConfig": {
     "access": "public",
